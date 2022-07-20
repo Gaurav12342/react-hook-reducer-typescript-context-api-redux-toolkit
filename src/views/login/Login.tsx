@@ -13,6 +13,9 @@ const Login: FC = () => {
         event.preventDefault();
     };
 
+    const handleButtonClick = () => {
+        localStorage.setItem("userToken", "gaurav sanjay pendharkar");
+    }
     return (
         <Grid sx={{ margin: "1rem 0", alignItems: 'center', display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
             <Typography variant="h3" gutterBottom component="div">
@@ -46,7 +49,7 @@ const Login: FC = () => {
                         </FormControl>
                     </Grid>
                     <Grid item xs={6}>
-                        <Button variant='contained'> Login </Button>
+                        <Button variant='contained' onClick={handleButtonClick}> Login </Button>
                     </Grid>
                 </Grid>
             </Paper>

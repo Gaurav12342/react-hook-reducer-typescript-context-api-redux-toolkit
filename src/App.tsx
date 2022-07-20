@@ -1,13 +1,12 @@
-import React, { FC } from 'react'
-// import Header from './layout/Header';
-import Login from '../src/views/login/index';
-import Registration from '../src/views/registration/index';
+import React, { FC, useEffect } from 'react'
+import Router from './router/index';
 const App: FC = () => {
+  // useEffect(() => {
+  //   localStorage.setItem("userToken", "gaurav sanjay pendharkar");
+  // }, []);
   return (
     <div>
-      {/* <Header /> */}
-      {/* <Login /> */}
-      <Registration />
+      <Router />
     </div>
   )
 }
