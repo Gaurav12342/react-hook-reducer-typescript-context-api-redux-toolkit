@@ -1,12 +1,14 @@
-import React, { FC, useEffect } from 'react'
+import React, { FC } from 'react'
 import Router from './router/index';
+import { Provider } from 'react-redux';
+import { store } from './store';
+
 const App: FC = () => {
-  // useEffect(() => {
-  //   localStorage.setItem("userToken", "gaurav sanjay pendharkar");
-  // }, []);
   return (
     <div>
-      <Router />
+      <Provider store={store}>
+        <Router />
+      </Provider>
     </div>
   )
 }
