@@ -16,3 +16,8 @@ export interface ILogin {
   // ) => void;
   // handleClickShowPassword?: any;
 }
+export interface IInitialState {
+  loading: boolean;
+  message: any;
+  error: string;
+}

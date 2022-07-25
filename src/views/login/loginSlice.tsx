@@ -2,11 +2,8 @@ import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
 import { IForm } from "../../interface/login";
 import { LOGIN_ROUTE } from "../../services/api";
-export interface IInitialState {
-    loading: boolean;
-    message: any;
-    error: string;
-};
+import { IInitialState } from "../../interface/login";
+
 export const initialState: IInitialState = {
     loading: false,
     message: {},
@@ -15,7 +12,6 @@ export const initialState: IInitialState = {
 
 export const loginAPI = createAsyncThunk("login", (obj: IForm) => {
     axios.post(LOGIN_ROUTE, obj).then((response: any) => {
-        console.log("response", response);
         return response;
     }).catch()
 });
