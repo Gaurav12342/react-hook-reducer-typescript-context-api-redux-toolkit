@@ -1,12 +1,21 @@
-import React, { FC, useState } from 'react'
+import React, { FC, useEffect, useState } from 'react'
 import LoginComponent from './Login';
 import { IForm } from '../../interface/login';
 import { useSelector, useDispatch } from 'react-redux';
-import { loginAPI } from '../../views/login/loginSlice';
+import { loginAPI, loginUser } from '../../views/login/loginSlice';
+import { useNavigate } from "react-router-dom";
+
 const Login: FC = () => {
-    const loginUserData = useSelector(state => state);
+    const user = useSelector(loginUser);
+
     const dispatch: any = useDispatch();
-    console.log("loginUserData", loginUserData);
+    let navigate = useNavigate();
+
+    // useEffect(() => {
+    //     if (user.message === "success") {
+    //         navigate("/dashboard");
+    //     }
+    // }, [navigate, user.message]);
 
     const [userData, setUserData] = useState<IForm>({
         email: "",
@@ -18,11 +27,16 @@ const Login: FC = () => {
     }
 
     const handleSubmit = () => {
+        debugger
         const obj: IForm = {
             "email": userData.email || "",
             "password": userData.password || ""
         }
-        dispatch(loginAPI(obj));
+        dispatch(loginAPI(obj)).then((res: any) => {
+            if (res?.payload?.message === "success") {
+                navigate("/dashboard");
+            }
+        });
     }
     return (
         <div>

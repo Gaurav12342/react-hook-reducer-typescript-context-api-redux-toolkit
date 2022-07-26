@@ -15,7 +15,7 @@ const Router: FC = () => {
                 </Route>
 
                 <Route path="/dashboard" element={<PrivateRoute />} >
-                    <Route path="/dashboard" element={<Home />} />
+                    <Route index element={<Home />} />
                 </Route>
             </Routes>
         </BrowserRouter >

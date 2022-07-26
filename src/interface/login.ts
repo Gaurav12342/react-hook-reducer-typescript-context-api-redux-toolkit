@@ -18,6 +18,6 @@ export interface ILogin {
 }
 export interface IInitialState {
   loading: boolean;
-  message: any;
+  responseData: any;
   error: string;
 }

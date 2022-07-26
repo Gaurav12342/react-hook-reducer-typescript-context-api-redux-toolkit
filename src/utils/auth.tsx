@@ -1,1 +1,1 @@
-export const isLogin = localStorage.getItem("userToken");
+export const isLogin: any = localStorage.getItem("user");
