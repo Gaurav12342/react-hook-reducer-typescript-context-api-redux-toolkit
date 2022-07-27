@@ -1,6 +1,6 @@
 import React, { FC } from 'react'
 import { useSelector } from 'react-redux';
-import { loginUser } from '../login/loginSlice';
+import { loginUser } from '../../store/login/loginSlice';
 
 const Home: FC = () => {
     const user = useSelector(loginUser);

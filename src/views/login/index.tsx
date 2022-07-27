@@ -2,7 +2,7 @@ import React, { FC, useEffect, useState } from 'react'
 import LoginComponent from './Login';
 import { IForm } from '../../interface/login';
 import { useSelector, useDispatch } from 'react-redux';
-import { loginAPI, loginUser } from '../../views/login/loginSlice';
+import { loginAPI, loginUser } from '../../store/login/loginSlice';
 import { useNavigate } from "react-router-dom";
 
 const Login: FC = () => {
