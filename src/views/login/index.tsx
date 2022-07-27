@@ -6,16 +6,8 @@ import { loginAPI, loginUser } from '../../views/login/loginSlice';
 import { useNavigate } from "react-router-dom";
 
 const Login: FC = () => {
-    const user = useSelector(loginUser);
-
     const dispatch: any = useDispatch();
     let navigate = useNavigate();
-
-    // useEffect(() => {
-    //     if (user.message === "success") {
-    //         navigate("/dashboard");
-    //     }
-    // }, [navigate, user.message]);
 
     const [userData, setUserData] = useState<IForm>({
         email: "",
