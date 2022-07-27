@@ -27,7 +27,6 @@ const Login: FC = () => {
     }
 
     const handleSubmit = () => {
-        debugger
         const obj: IForm = {
             "email": userData.email || "",
             "password": userData.password || ""
