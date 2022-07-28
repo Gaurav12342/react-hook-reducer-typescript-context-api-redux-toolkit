@@ -7,9 +7,12 @@ import Typography from '@mui/material/Typography';
 import MenuIcon from '@mui/icons-material/Menu';
 import Container from '@mui/material/Container';
 import Button from '@mui/material/Button';
+import { useNavigate } from "react-router-dom";
 
 
 const Header: FC = () => {
+    const navigate = useNavigate();
+
     return (
         <div>
             <AppBar position="static">
@@ -46,16 +49,14 @@ const Header: FC = () => {
                         </Box>
                         <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
                             <Button
-                                // key={page}
-                                // onClick={handleCloseNavMenu}
+                                onClick={() => navigate("toolkit-dashboard")}
                                 sx={{ my: 2, color: 'white', display: 'block' }}
                             >
                                 {"Toolkit"}
                             </Button>
 
                             <Button
-                                // key={page}
-                                // onClick={handleCloseNavMenu}
+                                onClick={() => navigate("context-api-dashboard")}
                                 sx={{ my: 2, color: 'white', display: 'block' }}
                             >
                                 {"Context"}

@@ -1,8 +1,8 @@
-import React, { FC, useEffect, useState } from 'react'
+import React, { FC, useState } from 'react'
 import LoginComponent from './Login';
 import { IForm } from '../../interface/login';
-import { useSelector, useDispatch } from 'react-redux';
-import { loginAPI, loginUser } from '../../store/login/loginSlice';
+import { useDispatch } from 'react-redux';
+import { loginAPI } from '../../store/login/loginSlice';
 import { useNavigate } from "react-router-dom";
 
 const Login: FC = () => {
@@ -25,7 +25,7 @@ const Login: FC = () => {
         }
         dispatch(loginAPI(obj)).then((res: any) => {
             if (res?.payload?.message === "success") {
-                navigate("/dashboard");
+                navigate("/toolkit-dashboard");
             }
         });
     }
