@@ -1,36 +1,31 @@
 import React, { FC } from 'react'
-// import { useSelector, useDispatch } from 'react-redux';
-// import { loginUser } from '../../store/login/loginSlice';
-// import { isLogin } from '../../utils/auth';
-// import { fetchUsers, usersData, userLoading } from '../../store/user/getAllUserSlice';
 import Box from '@mui/material/Box';
-import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
-
+import TabContext from '@mui/lab/TabContext';
+import TabList from '@mui/lab/TabList';
+import TabPanel from '@mui/lab/TabPanel';
+import CurrentUser from './CurrentUser/index';
+import AllUsers from './AllUser/index';
 
 const Home: FC = () => {
-    // const user = useSelector(usersData);
-    // const userLogin = useSelector(userLoading);
-    // console.log("userData =>", user);
-    // console.log("userLogin =>", userLogin);
-
-    // const dispatch = useDispatch();
-    // useEffect(() => {
-    //     dispatch(fetchUsers());
-    // }, [dispatch]);
-
-    const [value, setValue] = React.useState(0);
+    const [value, setValue] = React.useState<any>(0);
 
     const handleChange = (event: React.SyntheticEvent, newValue: number) => {
         setValue(newValue);
     };
 
     return (
-        <Box sx={{ width: '100%', bgcolor: 'background.paper' }}>
-            <Tabs value={value} onChange={handleChange} centered>
-                <Tab label="Current User" />
-                <Tab label="All user" />
-            </Tabs>
+        <Box sx={{ width: '100%', typography: 'body1' }}>
+            <TabContext value={value}>
+                <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
+                    <TabList onChange={handleChange} aria-label="lab API tabs example">
+                        <Tab label="Current User" value="1" />
+                        <Tab label="All User" value="2" />
+                    </TabList>
+                </Box>
+                <TabPanel value="1"><CurrentUser /></TabPanel>
+                <TabPanel value="2"><AllUsers /></TabPanel>
+            </TabContext>
         </Box>
     )
 }
