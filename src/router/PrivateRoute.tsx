@@ -5,8 +5,9 @@ import { isLogin } from '../utils/auth';
 
 const PrivateOutlet: FC = () => {
     const { pathname } = useLocation();
+    const isLogged = JSON.parse(isLogin)
 
-    return isLogin ? (
+    return isLogged?.Token ? (
         <>
             <Header />
             <Outlet />
