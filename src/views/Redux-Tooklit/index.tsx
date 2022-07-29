@@ -6,16 +6,17 @@ import TabList from '@mui/lab/TabList';
 import TabPanel from '@mui/lab/TabPanel';
 import CurrentUser from './CurrentUser/index';
 import AllUsers from './AllUser/index';
+import { Button } from '@mui/material';
 
 const Home: FC = () => {
-    const [value, setValue] = React.useState<any>(0);
+    const [value, setValue] = React.useState<any>(1);
 
     const handleChange = (event: React.SyntheticEvent, newValue: number) => {
         setValue(newValue);
     };
 
     return (
-        <Box sx={{ width: '100%', typography: 'body1' }}>
+        <Box sx={{ width: "100%", typography: 'body1' }}>
             <TabContext value={value}>
                 <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
                     <TabList onChange={handleChange} aria-label="lab API tabs example">

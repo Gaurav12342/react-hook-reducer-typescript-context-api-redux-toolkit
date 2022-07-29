@@ -1,6 +1,6 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import axiosInterceptor from '../../utils/AxiosInterceptor';
-import { GET_ALL_USERS } from '../../services/api/index';
+import { GET_USERS } from '../../services/api/index';
 import { IInitialState } from '../../interface/user';
 
 export const initialState: IInitialState = {
@@ -10,7 +10,7 @@ export const initialState: IInitialState = {
 };
 
 export const fetchUsers: any = createAsyncThunk("users", () => {
-    return axiosInterceptor(GET_ALL_USERS).then((response) => {
+    return axiosInterceptor(GET_USERS).then((response) => {
         if (response?.status === 200) {
             console.log("response.data =>", response.data)
             return response.data;
