@@ -12,13 +12,14 @@ import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
 import AdbIcon from '@mui/icons-material/Adb';
 import { useNavigate } from "react-router-dom";
-
+import { useSelector } from 'react-redux';
+import { currentUser } from '../../store/user/getCurrentUserSlice';
 
 const settings = ['Logout'];
 
 const Header: FC = () => {
     const navigate = useNavigate();
-
+    const currentUserData = useSelector(currentUser);
     const [anchorElUser, setAnchorElUser] = useState<null | HTMLElement>(null);
 
     const handleOpenUserMenu = (event: React.MouseEvent<HTMLElement>) => {
@@ -28,6 +29,12 @@ const Header: FC = () => {
     const handleCloseUserMenu = () => {
         setAnchorElUser(null);
     };
+
+    const handleLogout = () => {
+        localStorage.removeItem("user");
+        navigate("/");
+    }
+
     return (
         <div>
             <AppBar position="static">
@@ -49,7 +56,7 @@ const Header: FC = () => {
                                 textDecoration: 'none',
                             }}
                         >
-                            Gaurav Sali
+                            {currentUserData?.name}
                         </Typography>
 
                         <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
@@ -72,7 +79,7 @@ const Header: FC = () => {
                         <Box sx={{ flexGrow: 0 }}>
                             <Tooltip title="Open settings">
                                 <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                                    <Avatar alt="Gaurav Sali" src="/static/images/avatar/2.jpg" />
+                                    <Avatar alt="Gaurav Sali" src={currentUserData?.profilepicture} />
                                 </IconButton>
                             </Tooltip>
                             <Menu
@@ -91,11 +98,9 @@ const Header: FC = () => {
                                 open={Boolean(anchorElUser)}
                                 onClose={handleCloseUserMenu}
                             >
-                                {settings.map((setting) => (
-                                    <MenuItem key={setting} onClick={handleCloseUserMenu}>
-                                        <Typography textAlign="center">{setting}</Typography>
-                                    </MenuItem>
-                                ))}
+                                <MenuItem key={"setting"}>
+                                    <Typography textAlign="center" onClick={handleLogout}>{"Logout"}</Typography>
+                                </MenuItem>
                             </Menu>
                         </Box>
                     </Toolbar>
