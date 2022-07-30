@@ -12,7 +12,6 @@ export const initialState: IInitialState = {
 export const fetchUsers: any = createAsyncThunk("users", () => {
     return axiosInterceptor(GET_USERS).then((response) => {
         if (response?.status === 200) {
-            console.log("response.data =>", response.data)
             return response.data;
         }
     }).catch((error) => {

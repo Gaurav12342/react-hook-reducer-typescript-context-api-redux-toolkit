@@ -8,6 +8,7 @@ import Typography from '@mui/material/Typography';
 import { useDispatch } from 'react-redux';
 import { isLogin } from '../../utils/auth';
 import { fetchCurrentUser } from '../../store/user/getCurrentUserSlice';
+import { fetchUsers } from '../../store/user/getAllUserSlice';
 
 interface TabPanelProps {
     children?: React.ReactNode;
@@ -56,6 +57,13 @@ const Home: FC = () => {
             dispatch(fetchCurrentUser(loggedUser?.Id));
         }
     }, [loggedUser, value, dispatch]);
+
+
+    useEffect(() => {
+        if (loggedUser && value === 1) {
+            dispatch(fetchUsers());
+        }
+    }, [dispatch, value, loggedUser]);
 
     return (
         <Box sx={{ width: '100%' }}>

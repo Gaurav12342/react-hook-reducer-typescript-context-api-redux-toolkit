@@ -12,16 +12,12 @@ import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
 import AdbIcon from '@mui/icons-material/Adb';
 import { useNavigate } from "react-router-dom";
-import { useSelector } from 'react-redux';
-import { currentUser } from '../../store/user/getCurrentUserSlice';
-
-const settings = ['Logout'];
+import { useCurrentUser } from '../../utils/useCurrentUser';
 
 const Header: FC = () => {
     const navigate = useNavigate();
-    const currentUserData = useSelector(currentUser);
     const [anchorElUser, setAnchorElUser] = useState<null | HTMLElement>(null);
-
+    const { name, profilepicture } = useCurrentUser();
     const handleOpenUserMenu = (event: React.MouseEvent<HTMLElement>) => {
         setAnchorElUser(event.currentTarget);
     };
@@ -56,7 +52,7 @@ const Header: FC = () => {
                                 textDecoration: 'none',
                             }}
                         >
-                            {currentUserData?.name}
+                            {name}
                         </Typography>
 
                         <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
@@ -79,7 +75,7 @@ const Header: FC = () => {
                         <Box sx={{ flexGrow: 0 }}>
                             <Tooltip title="Open settings">
                                 <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                                    <Avatar alt="Gaurav Sali" src={currentUserData?.profilepicture} />
+                                    <Avatar alt="Gaurav Sali" src={profilepicture} />
                                 </IconButton>
                             </Tooltip>
                             <Menu

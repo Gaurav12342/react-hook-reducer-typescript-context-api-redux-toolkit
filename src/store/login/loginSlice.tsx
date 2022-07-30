@@ -15,8 +15,6 @@ export const loginAPI = createAsyncThunk("login", (obj: IForm) => {
         if (response?.data?.message === "success") {
             localStorage.setItem('user', JSON.stringify(response.data.data));
         }
-        // console.log("response", response.data);
-
         return response.data;
     }).catch((error) => {
         return error
