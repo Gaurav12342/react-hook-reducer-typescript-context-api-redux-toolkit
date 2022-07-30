@@ -1,21 +1,21 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axiosInterceptor from '../../utils/AxiosInterceptor';
 import { GET_USERS } from '../../services/api/index';
+import { IInitialStateCurrentUser, IState } from "../../interface/user";
 
-const initialState: any = {
+const initialState: IInitialStateCurrentUser = {
     loading: false,
     currentUser: {},
     error: ""
 };
 
 export const fetchCurrentUser: any = createAsyncThunk("user/current-user", (id: any) => {
-    debugger
     return axiosInterceptor(`${GET_USERS}/${id}`).then((response) => {
-        return console.log("current response =>", response);
+        return response?.status === 200 && response.data;
     }).catch()
 });
 export const getCurrentUserSlice = createSlice({
-    name: "user/current-user",
+    name: "currentUser",
     initialState,
     reducers: {},
     extraReducers: (builder) => {
@@ -32,5 +32,6 @@ export const getCurrentUserSlice = createSlice({
         });
     }
 });
-
+export const currentUserLoading = (state: IState) => state?.currentUser?.loading;
+export const currentUser = (state: IState) => state?.currentUser?.currentUser;
 export default getCurrentUserSlice.reducer;

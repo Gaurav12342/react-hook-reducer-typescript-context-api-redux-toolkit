@@ -1,21 +1,14 @@
-import React, { FC, useEffect } from 'react'
+import React, { FC } from 'react'
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import Typography from '@mui/material/Typography';
 import { CardActionArea } from '@mui/material';
-import { fetchCurrentUser } from '../../../store/user/getCurrentUserSlice';
-import { useDispatch, useSelector } from 'react-redux';
-import { isLogin } from '../../../utils/auth';
-const CurrentUser: FC = () => {
-    const dispatch = useDispatch();
-    const loggedUser = JSON.parse(isLogin)
+import { currentUser } from '../../../store/user/getCurrentUserSlice';
+import { useSelector } from 'react-redux';
 
-    useEffect(() => {
-        if (loggedUser?.id) {
-            dispatch(fetchCurrentUser(loggedUser?.id));
-        }
-    }, [loggedUser]);
+const CurrentUser: FC = () => {
+    const userData = useSelector(currentUser);
 
     return (
         <div>
@@ -24,16 +17,21 @@ const CurrentUser: FC = () => {
                     <CardMedia
                         component="img"
                         height="140"
-                        image="http://restapi.adequateshop.com/Media//Images/userimageicon.png"
+                        image={userData?.profilepicture}
                         alt="green iguana"
                     />
                     <CardContent>
                         <Typography gutterBottom variant="h5" component="div">
-                            Lizard
+                            {userData?.name}
                         </Typography>
                         <Typography variant="body2" color="text.secondary">
-                            Lizards are a widespread group of squamate reptiles, with over 6,000
-                            species, ranging across all continents except Antarctica
+                            {userData?.id}
+                        </Typography>
+                        <Typography variant="body2" color="text.secondary">
+                            {userData?.email}
+                        </Typography>
+                        <Typography variant="body2" color="text.secondary">
+                            {userData?.location}
                         </Typography>
                     </CardContent>
                 </CardActionArea>
