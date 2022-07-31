@@ -17,9 +17,9 @@ export interface ILogin {
   // handleClickShowPassword?: any;
 }
 export interface IInitialState {
-  loading: boolean;
-  responseData: any;
-  error: string;
+  loading?: boolean;
+  responseData?: any;
+  error?: string;
 }
 
 export interface IState {

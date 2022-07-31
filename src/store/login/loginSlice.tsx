@@ -30,7 +30,7 @@ export const loginSlice: any = createSlice({
             state.responseData = {};
             state.error = "";
         });
-        builder.addCase(loginAPI.fulfilled, (state, action: any) => {
+        builder.addCase(loginAPI.fulfilled, (state, action) => {
             state.loading = false;
             state.responseData = action.payload;
             state.error = "";
@@ -38,7 +38,7 @@ export const loginSlice: any = createSlice({
         builder.addCase(loginAPI.rejected, (state, action: any) => {
             state.loading = false;
             state.responseData = {};
-            state.error = action.error.message;
+            state.error = action.error;
         });
     }
 });

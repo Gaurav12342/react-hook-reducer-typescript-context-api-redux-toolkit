@@ -9,7 +9,7 @@ const initialState: IInitialStateCurrentUser = {
     error: ""
 };
 
-export const fetchCurrentUser: any = createAsyncThunk("user/current-user", (id: any) => {
+export const fetchCurrentUser: any = createAsyncThunk("user/current-user", (id) => {
     return axiosInterceptor(`${GET_USERS}/${id}`).then((response) => {
         return response?.status === 200 && response.data;
     }).catch()

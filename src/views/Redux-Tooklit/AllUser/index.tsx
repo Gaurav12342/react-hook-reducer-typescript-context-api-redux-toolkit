@@ -13,46 +13,9 @@ import Box from '@mui/material/Box';
 import DeleteIcon from '@mui/icons-material/Delete';
 import ModeEditOutlineOutlinedIcon from '@mui/icons-material/ModeEditOutlineOutlined';
 import IconButton from '@mui/material/IconButton';
-import Button from '@mui/material/Button';
-import Dialog from '@mui/material/Dialog';
-import DialogActions from '@mui/material/DialogActions';
-import DialogContent from '@mui/material/DialogContent';
-import DialogContentText from '@mui/material/DialogContentText';
-import DialogTitle from '@mui/material/DialogTitle';
 import { deletePerticularUser, deleteLoading } from '../../../store/user/deleteUserSlice';
-import LoadingButton from '@mui/lab/LoadingButton';
+import UserDialoag from '../../../components/common/UserDialoag';
 
-const ConfirmPopup: FC<any> = (props) => {
-    const { open, handleConfirm, rowData, handleCancel, deleteUserLoader } = props;
-    return (
-        <Dialog
-            open={open}
-            onClose={handleCancel}
-            aria-labelledby="alert-dialog-title"
-            aria-describedby="alert-dialog-description"
-        >
-            <DialogTitle id="alert-dialog-title">
-                {"Delete Record"}
-            </DialogTitle>
-            <DialogContent>
-                <DialogContentText id="alert-dialog-description">
-                    {`Are you sure you want to delete ${rowData?.id} record ?`}
-                </DialogContentText>
-            </DialogContent>
-            <DialogActions>
-                <LoadingButton
-                    loading={deleteUserLoader ? true : false}
-                    onClick={handleConfirm}
-                >
-                    Confirm
-                </LoadingButton>
-                <Button onClick={handleCancel} autoFocus>
-                    Cancel
-                </Button>
-            </DialogActions>
-        </Dialog>
-    )
-}
 const AllUsers: FC = () => {
     const user = useSelector(usersData);
     const userLogin = useSelector(userLoading);
@@ -132,7 +95,7 @@ const AllUsers: FC = () => {
                 </Table>
             </TableContainer>
 
-            {open && <ConfirmPopup deleteUserLoader={deleteUserLoader} handleConfirm={handleConfirm} handleCancel={handleCancel} open={open} rowData={rowData} />}
+            {open && <UserDialoag deleteUserLoader={deleteUserLoader} handleConfirm={handleConfirm} handleCancel={handleCancel} open={open} rowData={rowData} />}
         </div>
     )
 }

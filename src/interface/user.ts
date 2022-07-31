@@ -37,3 +37,15 @@ export interface IState {
   deleteUser?: IDeleteUserInitialState;
   users?: IInitialState;
 }
+
+export interface ConfirmPopupProps {
+  open?: any;
+  handleConfirm: () => void;
+  rowData?: ICurrentUser;
+  handleCancel: () => void;
+  deleteUserLoader?: boolean;
+}
+
+export interface ICurrentUserProps {
+  userData?: ICurrentUser;
+}

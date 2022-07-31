@@ -4,15 +4,9 @@ import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import Typography from '@mui/material/Typography';
 import { CardActionArea } from '@mui/material';
-import { ICurrentUser } from '../../interface/user';
+import { ICurrentUserProps } from '../../interface/user';
 
-interface IProps {
-    props?: {
-        userData?: ICurrentUser
-    }
-};
-
-const CurrentUser: FC<any> = (props) => {
+const CurrentUser: FC<ICurrentUserProps> = (props) => {
     const { userData } = props;
 
     return (
