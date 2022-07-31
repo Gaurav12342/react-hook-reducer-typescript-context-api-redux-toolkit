@@ -1,7 +1,7 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import axiosInterceptor from '../../utils/AxiosInterceptor';
 import { GET_USERS } from '../../services/api/index';
-import { IInitialState } from '../../interface/user';
+import { IInitialState, IState } from '../../interface/user';
 
 export const initialState: IInitialState = {
     loading: false,
@@ -38,6 +38,6 @@ export const getAllUserSlice = createSlice({
     }
 });
 
-export const userLoading = (state: any) => state.users.loading;
-export const usersData = (state: any) => state.users.userData;
+export const userLoading = (state: IState) => state?.users?.loading;
+export const usersData = (state: IState) => state?.users?.userData;
 export default getAllUserSlice.reducer; 

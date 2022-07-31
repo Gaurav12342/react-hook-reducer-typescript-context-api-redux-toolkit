@@ -25,6 +25,15 @@ export interface IInitialStateCurrentUser {
   currentUser: ICurrentUser;
   error: string;
 }
+
+export interface IDeleteUserInitialState {
+  loading: boolean;
+  deleteUser?: any;
+  error: any;
+}
+
 export interface IState {
   currentUser?: IInitialStateCurrentUser;
+  deleteUser?: IDeleteUserInitialState;
+  users?: IInitialState;
 }

@@ -19,13 +19,15 @@ import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
 import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
+import { deletePerticularUser, deleteLoading } from '../../../store/user/deleteUserSlice';
+import LoadingButton from '@mui/lab/LoadingButton';
 
 const ConfirmPopup: FC<any> = (props) => {
-    const { open, handleClose } = props;
+    const { open, handleConfirm, rowData, handleCancel, deleteUserLoader } = props;
     return (
         <Dialog
             open={open}
-            onClose={handleClose}
+            onClose={handleCancel}
             aria-labelledby="alert-dialog-title"
             aria-describedby="alert-dialog-description"
         >
@@ -34,12 +36,17 @@ const ConfirmPopup: FC<any> = (props) => {
             </DialogTitle>
             <DialogContent>
                 <DialogContentText id="alert-dialog-description">
-                    Are you sure you want to delete this record ?
+                    {`Are you sure you want to delete ${rowData?.id} record ?`}
                 </DialogContentText>
             </DialogContent>
             <DialogActions>
-                <Button onClick={handleClose}>Confirm</Button>
-                <Button onClick={handleClose} autoFocus>
+                <LoadingButton
+                    loading={deleteUserLoader ? true : false}
+                    onClick={handleConfirm}
+                >
+                    Confirm
+                </LoadingButton>
+                <Button onClick={handleCancel} autoFocus>
                     Cancel
                 </Button>
             </DialogActions>
@@ -50,15 +57,27 @@ const AllUsers: FC = () => {
     const user = useSelector(usersData);
     const userLogin = useSelector(userLoading);
     const dispatch = useDispatch();
+    const deleteUserLoader = useSelector(deleteLoading);
 
     const [open, setOpen] = useState(false);
-    const [rowData, setRowData] = useState({});
+    const [rowData, setRowData] = useState<any>({});
 
     const handleClickOpen = () => {
         setOpen(true);
     };
 
-    const handleClose = () => {
+    const handleConfirm = () => {
+        dispatch(deletePerticularUser(rowData.id)).then((res: any) => {
+            if (res?.payload?.status === 200) {
+                dispatch(fetchUsers());
+                setOpen(false);
+            }
+        }).catch();
+
+    };
+
+
+    const handleCancel = () => {
         setOpen(false);
     };
 
@@ -113,7 +132,7 @@ const AllUsers: FC = () => {
                 </Table>
             </TableContainer>
 
-            {open && <ConfirmPopup handleClose={handleClose} open={open} />}
+            {open && <ConfirmPopup deleteUserLoader={deleteUserLoader} handleConfirm={handleConfirm} handleCancel={handleCancel} open={open} rowData={rowData} />}
         </div>
     )
 }

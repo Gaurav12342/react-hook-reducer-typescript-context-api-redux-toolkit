@@ -2,7 +2,7 @@ import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
 import { IForm } from "../../interface/login";
 import { LOGIN_ROUTE } from "../../services/api";
-import { IInitialState } from "../../interface/login";
+import { IInitialState, IState } from "../../interface/login";
 
 export const initialState: IInitialState = {
     loading: false,
@@ -42,7 +42,7 @@ export const loginSlice: any = createSlice({
         });
     }
 });
-export const loginStatus = (state: any) => state.login.loading;
-export const loginError = (state: any) => state.login.error;
-export const loginUser = (state: any) => state.login.responseData;
+export const loginStatus = (state: IState) => state?.login?.loading;
+export const loginError = (state: IState) => state?.login?.error;
+export const loginUser = (state: IState) => state?.login?.responseData;
 export default loginSlice.reducer;

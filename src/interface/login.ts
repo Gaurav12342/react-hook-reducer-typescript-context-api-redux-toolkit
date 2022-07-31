@@ -21,3 +21,7 @@ export interface IInitialState {
   responseData: any;
   error: string;
 }
+
+export interface IState {
+  login?: IInitialState;
+}
